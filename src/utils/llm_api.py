@@ -10,7 +10,6 @@ from termcolor import colored
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 
-
 class LLM:
     def __init__(self, model_name, config_file="llm_config.yaml", verbose=False):
         self.model_name = model_name
@@ -44,21 +43,11 @@ class LLM:
             else:
                 print("Please include an API key in api_key.json or use bearer authentication in llm_config.yaml")
 
-        elif "llama" in self.model_name:
-            print("Using Llama")
-            # llama-2-70b-chat-19
-            self.client = OpenAI(api_key=self.key_dict["llama31"], base_url="https://gcr-llama31-70b-instruct.westus3.inference.ml.azure.com")
-
         elif "mistral" in self.model_name:
-            print("Using Mistral")
-            # mistralai-mixtral-8x7b-instru-7
+
             self.client = OpenAI(api_key=self.key_dict["mistral"], base_url="https://mistralai-8x7b-instruct-v01.westus3.inference.ml.azure.com/v1")
-        elif "phi" in self.model_name:
-            print("Using Phi")
-            # phi-3-medium-128k-instruct-1
-            self.client = OpenAI(api_key=self.key_dict["phi"], base_url="")
+
         else:
-            print("Using GPT-3.5")
             self.client = AzureOpenAI(api_key=self.key_dict["gpt-35"], azure_endpoint="https://gcraoai7sw1.openai.azure.com", api_version="2024-02-15-preview")
 
 

@@ -16,7 +16,6 @@ if os.path.exists("api_key.json"):
 else:
     key_dict = None
 
-
 class LLM:
     def __init__(self, model_name, config_file="llm_config.yaml", verbose=False):
         self.model_name = model_name
@@ -45,28 +44,6 @@ class LLM:
                     api_version= model_config["api_version"]
                     )
 
-        elif 'gpt-4o-mini-secphi' in self.model_name:
-            self.model_name = "gpt-4o-mini"
-            self.client = AzureOpenAI(
-                azure_endpoint = "https://secphio1.openai.azure.com/",
-                azure_ad_token_provider=token_provider,
-                api_version= "2024-05-01-preview"
-                )
-
-        elif 'gpt-4o-mini' in self.model_name:
-            model_config = config["gpt-4o-mini"]
-            if model_config["bearer_token"]:
-                print('using bearer token with GPT-4o-mini')
-                token_provider = get_bearer_token_provider(
-                    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-                )
-
-                self.client = AzureOpenAI(
-                    azure_endpoint = model_config["endpoint"],
-                    azure_ad_token_provider=token_provider,
-                    api_version= model_config["api_version"]
-                    )
-
         elif 'gpt-4o' in self.model_name:
             model_config = config["gpt-4o"]
             
@@ -88,10 +65,7 @@ class LLM:
 
         elif "llama" in self.model_name:
             print("Using Llama")
-            # llama-2-70b-chat-19
-            #self.client = OpenAI(api_key=key_dict["llama2"], base_url="https://gcrllm2-70b-chat.westus3.inference.ml.azure.com/v1")
             self.client = OpenAI(api_key=key_dict["llama31"], base_url="https://gcr-llama31-70b-instruct.westus3.inference.ml.azure.com")
-
 
         elif "mistral" in self.model_name:
             print("Using Mistral")
@@ -103,7 +77,7 @@ class LLM:
             self.client = OpenAI(api_key=key_dict["phi"], base_url="")
         else:
             print("Using GPT-3.5")
-            self.client = AzureOpenAI(api_key=key_dict["gpt-35"], azure_endpoint="https://gcraoai7sw1.openai.azure.com", api_version="2024-02-15-preview")
+            self.client = AzureOpenAI(api_key=key_dict["gpt-35"], azure_endpoint="https://yourresource.openai.azure.com", api_version="2024-02-15-preview")
 
 
     def __call__(self, message, *args, **kwargs):

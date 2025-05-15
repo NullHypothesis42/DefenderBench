@@ -90,7 +90,7 @@ def download(url, dst, force=False):
 
     # Download to a temp folder first to avoid corrupting the cache
     # with incomplete downloads.
-    temp_dir = mkdirs(pjoin(tempfile.gettempdir(), "cyberbench"))
+    temp_dir = mkdirs(pjoin(tempfile.gettempdir(), "defenderbench"))
     temp_path = pjoin(temp_dir, filename)
     with open(temp_path, 'ab') as temp_file:
         headers = {}
