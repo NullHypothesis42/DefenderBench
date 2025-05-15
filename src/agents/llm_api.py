@@ -65,12 +65,12 @@ class LLM:
 
         elif "llama" in self.model_name:
             print("Using Llama")
-            self.client = OpenAI(api_key=key_dict["llama31"], base_url="https://gcr-llama31-70b-instruct.westus3.inference.ml.azure.com")
+            self.client = OpenAI(api_key=key_dict["llama31"], base_url="https://yourresource.westus3.inference.ml.azure.com")
 
         elif "mistral" in self.model_name:
             print("Using Mistral")
             # mistralai-mixtral-8x7b-instru-7
-            self.client = OpenAI(api_key=key_dict["mistral"], base_url="https://mistralai-8x7b-instruct-v01.westus3.inference.ml.azure.com/v1")
+            self.client = OpenAI(api_key=key_dict["mistral"], base_url="https://yourresource.inference.ml.azure.com/v1")
         elif "phi" in self.model_name:
             print("Using Phi")
             # phi-3-medium-128k-instruct-1
