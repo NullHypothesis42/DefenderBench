@@ -1,0 +1,150 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "data": {"@id": "cr:data", "@type": "@json"},
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "fileProperty": "cr:fileProperty",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "examples": "cr:examples",
+    "rai": "cr:rai"
+  },
+  "@type": "sc:Dataset",
+  "name": "DefenderBench",
+  "alternateName": ["NullHypothesis42/DefenderBench", "LLM Cybersecurity Benchmark"],
+  "description": "DefenderBench is a benchmark suite and codebase for evaluating language‑model–based agents on a variety of cybersecurity tasks, including phishing detection, threat‑intelligence Q&A, code‑vulnerability identification, CVE patching, and autonomous network penetration in CyberBattleSim environments.",
+  "url": "https://github.com/NullHypothesis42/DefenderBench",
+  "sameAs": "https://pypi.org/project/defenderbench/",
+  "version": "0.1.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "keywords": [
+    "cybersecurity",
+    "benchmark",
+    "large‑language model",
+    "autonomous agents",
+    "reinforcement learning",
+    "phishing",
+    "vulnerability detection"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Researcher (Anonymous for Review)",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Anonymous"
+    },
+    "identifier": "https://orcid.org/0000-0000-0000-0000"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NullHypothesis42"
+  },
+  "datePublished": "2025-05-15",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "DefenderBench: Benchmarking LLM‑based Cybersecurity Agents.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "Git repository (source code and data lists)",
+      "contentUrl": "https://github.com/NullHypothesis42/DefenderBench.git",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "release-zip",
+      "containedIn": {"@id": "repo"},
+      "name": "Source snapshot",
+      "contentUrl": "https://github.com/NullHypothesis42/DefenderBench/archive/refs/heads/main.zip",
+      "encodingFormat": "application/zip",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "task-json",
+      "containedIn": {"@id": "repo"},
+      "encodingFormat": "application/json",
+      "includes": "src/defenderbench/**/data/*.json"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {"@id": "benchmark_tasks/split_name"},
+      "@id": "benchmark_tasks",
+      "name": "Benchmark task groups",
+      "description": "Two predefined task groups: full and small, reflecting dataset size variations.",
+      "field": [
+        {"@type": "cr:Field", "@id": "benchmark_tasks/split_name", "dataType": "sc:Text", "examples": ["full", "small"]}
+      ],
+      "data": [
+        {"benchmark_tasks/split_name": "full"},
+        {"benchmark_tasks/split_name": "small"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "DefenderBench_tasks",
+      "description": "Canonical list of tasks in the full benchmark.",
+      "field": [
+        {"@type": "cr:Field", "@id": "DefenderBench_tasks/task", "dataType": "sc:Text", "examples": ["PhishingText", "CyberBattleChain10"]}
+      ],
+      "data": [
+        {"DefenderBench_tasks/task": "PhishingText"},
+        {"DefenderBench_tasks/task": "PhishingTextFewShot"},
+        {"DefenderBench_tasks/task": "PhishingWeb"},
+        {"DefenderBench_tasks/task": "PhishingWebFewShot"},
+        {"DefenderBench_tasks/task": "CyberThreatIntelligenceMultiChoiceQuestions"},
+        {"DefenderBench_tasks/task": "CyberThreatIntelligenceMultiChoiceQuestionsWithContext"},
+        {"DefenderBench_tasks/task": "CodeVulnerabilityDetection"},
+        {"DefenderBench_tasks/task": "CodeVulnerabilityDetectionFewShot"},
+        {"DefenderBench_tasks/task": "CodeVulnerabilityDevignDetection"},
+        {"DefenderBench_tasks/task": "CodeVulnerabilityDevignDetectionFewShot"},
+        {"DefenderBench_tasks/task": "CVEFix"},
+        {"DefenderBench_tasks/task": "CyberBattleChain2"},
+        {"DefenderBench_tasks/task": "CyberBattleChain4"},
+        {"DefenderBench_tasks/task": "CyberBattleChain10"},
+        {"DefenderBench_tasks/task": "CyberBattleTiny"},
+        {"DefenderBench_tasks/task": "CyberBattleToyCTF"}
+      ]
+    }
+  ],
+  "rai": {
+    "dct:conformsTo": "http://mlcommons.org/croissant/RAI/1.0",
+    "dataCollection": "All tasks derive from publicly available security datasets or synthetic simulations; no personal data is collected.",
+    "dataBiases": "Benchmark focuses on technical exploit scenarios; demographic or geographic fairness considerations are out of scope.",
+    "personalSensitiveInformation": false
+  }
+}
